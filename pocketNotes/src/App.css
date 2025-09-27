@@ -387,7 +387,10 @@ body {
             flex-direction: column;
           }
 
-          
+          /* Hide scrollbars for a cleaner look */
+          .group-list::-webkit-scrollbar, .notes-body::-webkit-scrollbar {
+              display: none;
+          }
           .group-list, .notes-body {
               -ms-overflow-style: none; /* IE and Edge */
               scrollbar-width: none; /* Firefox */
@@ -453,10 +456,72 @@ body {
             font-size: 16px;
           }
 
+/* --- MOBILE POPUP FIXES --- */
+          .popup-content {
+            max-width: 300px; /* Pop-up ko chhota kiya */
+            padding: 20px; /* Padding kam kiya */
+          }
+          
+          .popup-title {
+             font-size: 20px;
+             margin-bottom: 15px;
+          }
+          
+          .popup-label {
+              font-size: 16px;
+          }
 
+          .popup-input-container, .popup-color-container {
+              margin-bottom: 15px;
+          }
+          
+          .popup-actions {
+             justify-content: center; /* Button ko center mein kiya */
+             margin-top: 10px;
+          }
+
+          .popup-create-btn {
+            width: 100%; /* Button ko rectangle bana kar full width di */
+            max-width: 150px; /* Center karne ke liye max-width */
+            border-radius: 5px; /* Rectangle corners */
+            padding: 10px 0; /* Vertical padding adjust kiya */
+          }
+          
+          .color-options {
+              gap: 10px;
+          }
+          
+          .color-circle {
+             width: 25px;
+             height: 25px;
+          }
+          /* --- END MOBILE POPUP FIXES --- */
+
+          .note-footer-svg {
+            bottom: 30px; 
+            right: 30px;
+            width: 24px;
+            height: 24px;
+          }
+          
+          .note-input {
+              height: 70px; 
+              padding-right: 50px; 
+          }
+          
+          .initial-title {
+            font-size: 36px;
+          }
+
+          .initial-subtitle {
+            font-size: 16px;
+          }
+        
 
           .pocket-notes-image img {
             max-width: 100%;
             height: auto;
           }
         }
+
+        
