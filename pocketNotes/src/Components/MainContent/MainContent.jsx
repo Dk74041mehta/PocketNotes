@@ -1,5 +1,5 @@
 import React from 'react';
-import bg from '../assets/bg.png';
+import bg from '../../assets/bg.png';
 
 const MainContent = ({ selectedGroup, notes, newNoteText, onNoteInputChange, onNoteInputKeyDown, onAddNote, isMobile, onGoBack }) => {
   
@@ -54,18 +54,15 @@ const MainContent = ({ selectedGroup, notes, newNoteText, onNoteInputChange, onN
         <div className="notes-group-name">{selectedGroup.name}</div>
       </div>
       <div className="notes-body">
-        <div className="scrollable-notes-container">
-          {notes.length === 0 ? (
-            <div className="no-notes-message">No notes yet. Start writing!</div>
-          ) : (
-            notes.map(note => (
-              <div key={note.id} className="note-item">
-                <p className="note-text">{note.text}</p>
-                <div className="note-metadata">{formatDateTime(note.createdAt)}</div>
-              </div>
-            ))
-          )}
-        </div>
+    <div className="scrollable-notes-container">
+  {notes.map(note => (
+    <div key={note.id} className="note-item">
+      <p className="note-text">{note.text}</p>
+      <div className="note-metadata">{formatDateTime(note.createdAt)}</div>
+    </div>
+  ))}
+</div>
+
       </div>
 <div className="notes-footer" style={{ position: 'relative' }}>
   <textarea

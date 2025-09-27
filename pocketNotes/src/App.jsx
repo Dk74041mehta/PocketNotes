@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './Components/Sidebar';
-import MainContent from './Components/MainContent';
-import CreateGroupPopup from './Components/CreateGroupPopup';
+import Sidebar from './Components/Sidebar/Sidebar';
+import MainContent from './Components/MainContent/MainContent';
+import CreateGroupPopup from './Components/CreateGroupPopup/CreateGroupPopup';
 import './App.css';
+import { getFromStorage, saveToStorage } from './utils/storage';
+import { generateInitials } from './utils/helper';
 
 const App = () => {
-  const [groups, setGroups] = useState(() => {
-    const saved = localStorage.getItem('notesAppGroups');
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  const [groupNotes, setGroupNotes] = useState(() => {
-    const saved = localStorage.getItem('notesAppAllNotes');
-    return saved ? JSON.parse(saved) : {};
-  });
-
+  const [groups, setGroups] = useState(() => getFromStorage('notesAppGroups', []));
+  const [groupNotes, setGroupNotes] = useState(() => getFromStorage('notesAppAllNotes', {}));
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [newGroupName, setNewGroupName] = useState('');
@@ -26,14 +20,13 @@ const App = () => {
 
   const groupColors = ['#B38B59', '#FF79F2', '#43E6F6', '#0047FF', '#6691FF', '#9E9E9E'];
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Load selected group from storage
+  // Load selected group
   useEffect(() => {
     const storedSelectedGroupId = localStorage.getItem('notesAppSelectedGroupId');
     if (storedSelectedGroupId) {
@@ -45,32 +38,19 @@ const App = () => {
     }
   }, [groups, isMobile]);
 
-  // Save groups
+  // Persist data
+  useEffect(() => saveToStorage('notesAppGroups', groups), [groups]);
+  useEffect(() => saveToStorage('notesAppAllNotes', groupNotes), [groupNotes]);
   useEffect(() => {
-    localStorage.setItem('notesAppGroups', JSON.stringify(groups));
-  }, [groups]);
-
-  // Save notes
-  useEffect(() => {
-    localStorage.setItem('notesAppAllNotes', JSON.stringify(groupNotes));
-  }, [groupNotes]);
-
-  // Save selected group
-  useEffect(() => {
-    if (selectedGroup) {
-      localStorage.setItem('notesAppSelectedGroupId', selectedGroup.id);
-    } else {
-      localStorage.removeItem('notesAppSelectedGroupId');
-    }
+    if (selectedGroup) localStorage.setItem('notesAppSelectedGroupId', selectedGroup.id);
+    else localStorage.removeItem('notesAppSelectedGroupId');
   }, [selectedGroup]);
 
-  // Select a group
   const handleGroupSelect = (group) => {
     setSelectedGroup(group);
     if (isMobile) setShowMainContent(true);
   };
 
-  // Create a new group
   const handleCreateGroup = (e) => {
     e.preventDefault();
     const trimmedName = newGroupName.trim();
@@ -85,46 +65,32 @@ const App = () => {
       return;
     }
 
-    // Generate initials
-    const words = trimmedName.split(' ').filter(Boolean);
-    let initials = '';
-    if (words.length === 1) initials = words[0][0].toUpperCase();
-    else if (words.length === 2) initials = (words[0][0] + words[1][0]).toUpperCase();
-    else initials = (words[0][0] + words[words.length - 1][0]).toUpperCase();
-
     const newGroup = {
       id: Date.now().toString(),
       name: trimmedName,
-      initials,
+      initials: generateInitials(trimmedName),
       color: newGroupColor,
       createdAt: new Date().toISOString(),
     };
 
     setGroups([...groups, newGroup]);
     setSelectedGroup(newGroup);
-    setGroupNotes(prev => ({ ...prev, [newGroup.id]: [] })); // empty notes for new group
+    setGroupNotes(prev => ({ ...prev, [newGroup.id]: [] }));
     setNewGroupName('');
     setShowPopup(false);
     setInputError('');
     if (isMobile) setShowMainContent(true);
   };
 
-  // Add a new note
   const handleAddNewNote = () => {
     if (!selectedGroup || newNoteText.trim() === '') return;
 
-    const newNote = {
-      id: Date.now().toString(),
-      text: newNoteText.trim(),
-      createdAt: new Date().toISOString(),
-    };
+    const newNote = { id: Date.now().toString(), text: newNoteText.trim(), createdAt: new Date().toISOString() };
 
-    setGroupNotes(prev => {
-      const updated = { ...prev };
-      const notesForGroup = updated[selectedGroup.id] || [];
-      updated[selectedGroup.id] = [...notesForGroup, newNote];
-      return updated;
-    });
+    setGroupNotes(prev => ({
+      ...prev,
+      [selectedGroup.id]: [...(prev[selectedGroup.id] || []), newNote],
+    }));
 
     setNewNoteText('');
   };
