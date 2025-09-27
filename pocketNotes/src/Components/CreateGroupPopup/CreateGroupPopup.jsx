@@ -6,7 +6,7 @@ const CreateGroupPopup = ({ show, onSubmit, groupName, onGroupNameChange, inputE
   return (
     <div className="popup-overlay">
       <div className="popup-content">
-        <h2 className="popup-title">Create New Notes Group</h2>
+        <h2 className="popup-title">Create New group</h2>
         <form onSubmit={onSubmit}>
           <div className="popup-input-container">
             <label className="popup-label">Group Name</label>

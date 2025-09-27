@@ -99,6 +99,14 @@ body {
   background-color: #001a6f;
 }
 
+
+.dot-separator {
+  color: #000;
+  margin: 0 4px; 
+  font-size: 28px;
+
+}
+
 .main-content {
   flex: 1;
   display: flex;
@@ -192,7 +200,7 @@ body {
 .note-item {
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 12px;
+  padding: 10px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -373,57 +381,82 @@ body {
 .popup-create-btn:hover {
   background-color: #001a6f;
 }
+  /* Mobile-specific styles */
+        @media (max-width: 768px) {
+          .app-container {
+            flex-direction: column;
+          }
 
-/* Mobile-specific styles */
-@media (max-width: 768px) {
-  .app-container {
-    flex-direction: column;
-  }
+          
+          .group-list, .notes-body {
+              -ms-overflow-style: none; /* IE and Edge */
+              scrollbar-width: none; /* Firefox */
+          }
 
-  .sidebar,
-  .main-content {
-    width: 100%;
-    height: 100%;
-    padding: 15px;
-  }
+          .sidebar,
+          .main-content {
+            width: 100%;
+            height: 100%;
+            padding: 15px; /* Adjust padding for mobile */
+            box-sizing: border-box;
+          }
 
-  .sidebar {
-    position: relative;
-  }
+          .sidebar {
+            position: relative;
+            padding-top: 30px; /* Space for title */
+          }
+          
+          .sidebar-title {
+              margin-bottom: 10px;
+          }
 
-  .add-btn {
-    bottom: 15px;
-    right: 15px;
-  }
+          .add-btn {
+            bottom: 15px;
+            right: 15px;
+            z-index: 500;
+          }
 
-  .notes-header {
-    padding: 15px;
-    text-align: left;
-    box-shadow: none;
-  }
+          .notes-header {
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          }
 
-  .back-btn {
-    display: block;
-  }
+          .back-btn {
+            display: block;
+          }
 
-  .notes-body {
-    padding: 15px;
-  }
+          .notes-body {
+            padding: 15px;
+          }
 
-  .notes-footer {
-    padding: 15px;
-  }
+          .notes-footer {
+            padding: 15px;
+          }
+          
+          .note-footer-svg {
+            bottom: 30px; /* SVG ki position bottom-right me */
+            right: 30px;
+            width: 24px;
+            height: 24px;
+          }
+          
+          .note-input {
+              height: 70px; /* Mobile par thoda chota input box */
+              padding-right: 50px; /* SVG ke liye space */
+          }
 
-  .initial-title {
-    font-size: 36px;
-  }
+          .initial-title {
+            font-size: 36px;
+          }
 
-  .initial-subtitle {
-    font-size: 16px;
-  }
+          .initial-subtitle {
+            font-size: 16px;
+          }
 
-  .pocket-notes-image img {
-    max-width: 100%;
-    height: auto;
-  }
-}
+
+
+          .pocket-notes-image img {
+            max-width: 100%;
+            height: auto;
+          }
+        }
