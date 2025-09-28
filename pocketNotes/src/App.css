@@ -6,16 +6,17 @@ body {
   background-color: #f5f5f5;
 }
 
+/*  App Container */
 .app-container {
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
+/*Sidebar */
 .sidebar {
   width: 300px;
-  background-color: #FFFFFF;
-  /* padding: 20px; */
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -29,29 +30,31 @@ body {
   text-align: center;
 }
 
+/* Group List & Items */
 .group-list {
   flex: 1;
   overflow-y: auto;
   margin-top: 20px;
 }
+
 .group-item {
   display: flex;
   align-items: center;
-  padding: 10px 15px; /* existing padding rakh sakte ho */
+  padding: 10px 15px;
   cursor: pointer;
-  border-radius: 25px; /* existing rounded corners */
+  border-radius: 25px;
   margin-bottom: 15px;
   transition: background-color 0.2s;
-  width: 100%;          /* full width le lega */
-  box-sizing: border-box; /* padding width me include hoga */
+  width: 100%;
+  box-sizing: border-box;
 }
-
 
 .group-item:hover,
 .group-item.active {
   background-color: #e2e2e2;
 }
 
+/* Group initials circle */
 .group-initials {
   min-width: 50px;
   min-height: 50px;
@@ -67,6 +70,7 @@ body {
   margin-right: 20px;
 }
 
+/* Group name */
 .group-name {
   font-size: 18px;
   font-weight: 500;
@@ -76,6 +80,7 @@ body {
   text-overflow: ellipsis;
 }
 
+/* Add button */
 .add-btn {
   width: 60px;
   height: 60px;
@@ -99,21 +104,15 @@ body {
   background-color: #001a6f;
 }
 
-
-.dot-separator {
-  color: #000;
-  margin: 0 4px; 
-  font-size: 28px;
-
-}
-
+/* Main Content*/
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #DAE5F5;
+  background-color: #dae5f5;
 }
 
+/* Initial Screen */
 .initial-screen {
   display: flex;
   flex-direction: column;
@@ -144,11 +143,18 @@ body {
   font-size: 16px;
 }
 
+.dot-separator {
+  color: #000;
+  margin: 0 4px;
+  font-size: 28px;
+}
+
+/*Notes Header*/
 .notes-header {
   display: flex;
   align-items: center;
   padding: 20px 30px;
-  background-color: #001F8B;
+  background-color: #001f8b;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -182,23 +188,23 @@ body {
 .notes-group-name {
   font-size: 24px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #fff;
 }
 
+/*  Notes Body */
 .notes-body {
   flex: 1;
-  background-color: #DAE5F5;
+  background-color: #dae5f5;
   padding: 20px 30px;
   overflow-y: auto;
 }
 
 .scrollable-notes-container {
   padding-bottom: 20px;
-  
 }
 
 .note-item {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 20px;
@@ -218,11 +224,13 @@ body {
   color: #a3a3a3;
   text-align: right;
 }
+
+/*Notes Footer*/
 .notes-footer {
   display: flex;
-  background-color: #001F8B;
+  background-color: #001f8b;
   padding: 20px 30px;
-  position: relative; /* SVG absolute ke liye relative parent */
+  position: relative; /* SVG ke liye relative parent */
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -241,35 +249,22 @@ body {
 
 .note-footer-svg {
   position: absolute;
-  bottom: 37px; 
-  right: 50px;  
+  bottom: 37px;
+  right: 50px;
   width: 34px;
   height: 29px;
   transition: transform 0.2s, color 0.2s;
-  color: #CCCCCC;        /* grey dikhega jab disabled */
-  cursor: not-allowed;   /* disabled cursor but visible */
+  color: #ccc;
+  cursor: not-allowed;
 }
 
 .note-footer-svg.active {
-  color: #001F8B;        /* blue when enabled */
+  color: #001f8b;
   cursor: pointer;
 }
 
 .note-footer-svg.active:hover {
   transform: scale(1.1);
-}
-
-
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-  .notes-footer {
-    padding: 15px;
-  }
-
-  .note-footer-svg {
-    bottom: 20px;
-    right: 20px;
-  }
 }
 
 /* Popup Styles */
@@ -305,6 +300,8 @@ body {
 
 .popup-input-container {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .popup-label {
@@ -312,13 +309,7 @@ body {
   font-weight: 500;
   color: #555;
   margin-bottom: 8px;
-  display: inline-block;
   margin-right: 20px;
-}
-
-.popup-input-container {
-  display: flex;
-  align-items: center;
 }
 
 .popup-input {
@@ -381,147 +372,126 @@ body {
 .popup-create-btn:hover {
   background-color: #001a6f;
 }
-  /* Mobile-specific styles */
-        @media (max-width: 768px) {
-          .app-container {
-            flex-direction: column;
-          }
 
-          /* Hide scrollbars for a cleaner look */
-          .group-list::-webkit-scrollbar, .notes-body::-webkit-scrollbar {
-              display: none;
-          }
-          .group-list, .notes-body {
-              -ms-overflow-style: none; /* IE and Edge */
-              scrollbar-width: none; /* Firefox */
-          }
+/* Mobile View*/
+@media (max-width: 768px) {
 
-          .sidebar,
-          .main-content {
-            width: 100%;
-            height: 100%;
-            padding: 15px; /* Adjust padding for mobile */
-            box-sizing: border-box;
-          }
+  .app-container {
+    flex-direction: column;
+  }
 
-          .sidebar {
-            position: relative;
-            padding-top: 30px; /* Space for title */
-          }
-          
-          .sidebar-title {
-              margin-bottom: 10px;
-          }
+  /* Hide scrollbars for cleaner look */
+  .group-list::-webkit-scrollbar,
+  .notes-body::-webkit-scrollbar {
+    display: none;
+  }
+  .group-list,
+  .notes-body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-          .add-btn {
-            bottom: 15px;
-            right: 15px;
-            z-index: 500;
-          }
+  .sidebar,
+  .main-content {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
 
-          .notes-header {
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          }
+  .sidebar {
+    position: relative;
+    padding-top: 30px;
+  }
 
-          .back-btn {
-            display: block;
-          }
+  .sidebar-title {
+    margin-bottom: 10px;
+  }
 
-          .notes-body {
-            padding: 15px;
-          }
+  .add-btn {
+    bottom: 15px;
+    right: 15px;
+    z-index: 500;
+  }
 
-          .notes-footer {
-            padding: 15px;
-          }
-          
-          .note-footer-svg {
-            bottom: 30px; /* SVG ki position bottom-right me */
-            right: 30px;
-            width: 24px;
-            height: 24px;
-          }
-          
-          .note-input {
-              height: 70px; /* Mobile par thoda chota input box */
-              padding-right: 50px; /* SVG ke liye space */
-          }
+  .notes-header {
+    padding: 15px;
+  }
 
-          .initial-title {
-            font-size: 36px;
-          }
+  .back-btn {
+    display: block;
+  }
 
-          .initial-subtitle {
-            font-size: 16px;
-          }
+  .notes-body {
+    padding: 15px;
+  }
 
-/* --- MOBILE POPUP FIXES --- */
-          .popup-content {
-            max-width: 300px; /* Pop-up ko chhota kiya */
-            padding: 20px; /* Padding kam kiya */
-          }
-          
-          .popup-title {
-             font-size: 20px;
-             margin-bottom: 15px;
-          }
-          
-          .popup-label {
-              font-size: 16px;
-          }
+  .notes-footer {
+    padding: 15px;
+  }
 
-          .popup-input-container, .popup-color-container {
-              margin-bottom: 15px;
-          }
-          
-          .popup-actions {
-             justify-content: center; /* Button ko center mein kiya */
-             margin-top: 10px;
-          }
+  .note-footer-svg {
+    bottom: 30px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+  }
 
-          .popup-create-btn {
-            width: 100%; /* Button ko rectangle bana kar full width di */
-            max-width: 150px; /* Center karne ke liye max-width */
-            border-radius: 5px; /* Rectangle corners */
-            padding: 10px 0; /* Vertical padding adjust kiya */
-          }
-          
-          .color-options {
-              gap: 10px;
-          }
-          
-          .color-circle {
-             width: 25px;
-             height: 25px;
-          }
-          /* --- END MOBILE POPUP FIXES --- */
+  .note-input {
+    height: 70px;
+    padding-right: 50px;
+  }
 
-          .note-footer-svg {
-            bottom: 30px; 
-            right: 30px;
-            width: 24px;
-            height: 24px;
-          }
-          
-          .note-input {
-              height: 70px; 
-              padding-right: 50px; 
-          }
-          
-          .initial-title {
-            font-size: 36px;
-          }
+  .initial-title {
+    font-size: 36px;
+  }
 
-          .initial-subtitle {
-            font-size: 16px;
-          }
-        
+  .initial-subtitle {
+    font-size: 16px;
+  }
 
-          .pocket-notes-image img {
-            max-width: 100%;
-            height: auto;
-          }
-        }
+  .popup-content {
+    max-width: 300px;
+    padding: 20px;
+  }
 
-        
+  .popup-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .popup-label {
+    font-size: 16px;
+  }
+
+  .popup-input-container,
+  .popup-color-container {
+    margin-bottom: 15px;
+  }
+
+  .popup-actions {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .popup-create-btn {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 5px;
+    padding: 10px 0;
+  }
+
+  .color-options {
+    gap: 10px;
+  }
+
+  .color-circle {
+    width: 25px;
+    height: 25px;
+  }
+
+  .pocket-notes-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}

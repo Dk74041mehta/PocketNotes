@@ -11,10 +11,11 @@ const MainContent = ({
   isMobile,
   onGoBack,
 }) => {
+  // Function to format note ka date & time
   const formatDateTime = (isoString) => {
     const date = new Date(isoString);
     const day = date.getDate();
-    const month = date.toLocaleString("default", { month: "short" }); // short month
+    const month = date.toLocaleString("default", { month: "short" }); 
     const year = date.getFullYear();
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -31,6 +32,7 @@ const MainContent = ({
     );
   };
 
+  // Agar koi group select nahi hua → initial Pocket Notes screen
   if (!selectedGroup) {
     return (
       <div className="main-content">
@@ -62,9 +64,11 @@ const MainContent = ({
     );
   }
 
+  // Agar group select hua → show notes & add note input
   return (
     <div className="main-content">
       <div className="notes-header">
+        {/* Mobile me back button */}
         {isMobile && (
           <button className="back-btn" onClick={onGoBack}>
             <svg
@@ -73,7 +77,7 @@ const MainContent = ({
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="white"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -83,6 +87,7 @@ const MainContent = ({
             </svg>
           </button>
         )}
+        {/* Group initials & name */}
         <div
           className="notes-initials"
           style={{ backgroundColor: selectedGroup.color }}
@@ -91,6 +96,7 @@ const MainContent = ({
         </div>
         <div className="notes-group-name">{selectedGroup.name}</div>
       </div>
+
       <div className="notes-body">
         <div className="scrollable-notes-container">
           {notes.map((note) => (
@@ -103,6 +109,8 @@ const MainContent = ({
           ))}
         </div>
       </div>
+
+      {/* Footer input to add new note */}
       <div className="notes-footer" style={{ position: "relative" }}>
         <textarea
           placeholder="Enter your text here........"
@@ -119,7 +127,7 @@ const MainContent = ({
             newNoteText.trim().length > 0 ? "active" : ""
           }`}
           onClick={() => {
-            if (newNoteText.trim().length > 0) onAddNote();
+            if (newNoteText.trim().length > 0) onAddNote(); // note add karne ka click handler
           }}
         >
           <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />

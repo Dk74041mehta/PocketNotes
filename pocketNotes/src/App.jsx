@@ -20,35 +20,20 @@ const App = () => {
 
   const groupColors = ['#B38B59', '#FF79F2', '#43E6F6', '#0047FF', '#6691FF', '#9E9E9E'];
 
+  // Handle resize for mobile
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Load selected group
-  useEffect(() => {
-    const storedSelectedGroupId = localStorage.getItem('notesAppSelectedGroupId');
-    if (storedSelectedGroupId) {
-      const group = groups.find(g => g.id === storedSelectedGroupId);
-      if (group) {
-        setSelectedGroup(group);
-        if (isMobile) setShowMainContent(true);
-      }
-    }
-  }, [groups, isMobile]);
-
   // Persist data
   useEffect(() => saveToStorage('notesAppGroups', groups), [groups]);
   useEffect(() => saveToStorage('notesAppAllNotes', groupNotes), [groupNotes]);
-  useEffect(() => {
-    if (selectedGroup) localStorage.setItem('notesAppSelectedGroupId', selectedGroup.id);
-    else localStorage.removeItem('notesAppSelectedGroupId');
-  }, [selectedGroup]);
 
   const handleGroupSelect = (group) => {
     setSelectedGroup(group);
-    if (isMobile) setShowMainContent(true);
+    if (isMobile) setShowMainContent(true); // Mobile: show main content
   };
 
   const handleCreateGroup = (e) => {
@@ -74,12 +59,14 @@ const App = () => {
     };
 
     setGroups([...groups, newGroup]);
-    setSelectedGroup(newGroup);
     setGroupNotes(prev => ({ ...prev, [newGroup.id]: [] }));
     setNewGroupName('');
     setShowPopup(false);
     setInputError('');
-    if (isMobile) setShowMainContent(true);
+
+    // Always go to initial page after creating a group
+    setSelectedGroup(null);
+    if (isMobile) setShowMainContent(false);
   };
 
   const handleAddNewNote = () => {
