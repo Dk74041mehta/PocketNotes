@@ -375,20 +375,23 @@ body {
 
 /* Mobile View*/
 @media (max-width: 768px) {
-
   .app-container {
     flex-direction: column;
   }
-
-  /* Hide scrollbars for cleaner look */
   .group-list::-webkit-scrollbar,
   .notes-body::-webkit-scrollbar {
-    display: none;
+    width: 6px;
   }
-  .group-list,
-  .notes-body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+
+  .group-list::-webkit-scrollbar-thumb,
+  .notes-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+  }
+
+  .group-list::-webkit-scrollbar-track,
+  .notes-body::-webkit-scrollbar-track {
+    background: transparent;
   }
 
   .sidebar,
