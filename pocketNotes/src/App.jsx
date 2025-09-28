@@ -115,16 +115,18 @@ const App = () => {
         />
       )}
 
-      <CreateGroupPopup
-        show={showPopup}
-        onSubmit={handleCreateGroup}
-        groupName={newGroupName}
-        onGroupNameChange={(e) => { setNewGroupName(e.target.value); setInputError(''); }}
-        inputError={inputError}
-        groupColors={groupColors}
-        selectedColor={newGroupColor}
-        onColorSelect={setNewGroupColor}
-      />
+ <CreateGroupPopup
+  show={showPopup}
+  onClose={() => setShowPopup(false)}  
+  onSubmit={handleCreateGroup}
+  groupName={newGroupName}
+  onGroupNameChange={(e) => { setNewGroupName(e.target.value); setInputError(''); }}
+  inputError={inputError}
+  groupColors={groupColors}
+  selectedColor={newGroupColor}
+  onColorSelect={setNewGroupColor}
+/>
+
     </div>
   );
 };

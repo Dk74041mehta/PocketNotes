@@ -2,6 +2,7 @@ import React from 'react';
 
 const CreateGroupPopup = ({
   show,
+  onClose,              // <- yaha add karo
   onSubmit,
   groupName,
   onGroupNameChange,
@@ -10,11 +11,18 @@ const CreateGroupPopup = ({
   selectedColor,
   onColorSelect
 }) => {
-  
+
   if (!show) return null;
 
+  // Overlay par click ho toh popup close karo
+  const handleOverlayClick = (e) => {
+    if (e.target.classList.contains('popup-overlay')) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="popup-overlay">
+    <div className="popup-overlay" onClick={handleOverlayClick}>
       <div className="popup-content">
         <h2 className="popup-title">Create New Group</h2>
 
@@ -40,7 +48,7 @@ const CreateGroupPopup = ({
                   key={color}
                   className={`color-circle ${selectedColor === color ? 'active' : ''}`}
                   style={{ backgroundColor: color }}
-                  onClick={() => onColorSelect(color)} // Color select karne ka handler
+                  onClick={() => onColorSelect(color)}
                 />
               ))}
             </div>
