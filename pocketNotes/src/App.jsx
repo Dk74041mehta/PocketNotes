@@ -18,7 +18,7 @@ const App = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showMainContent, setShowMainContent] = useState(false);
 
-  const groupColors = ['#B38B59', '#FF79F2', '#43E6F6', '#0047FF', '#6691FF', '#9E9E9E'];
+  const groupColors = ['#B38BFA', '#FF79F2', '#43E6F6', '#F19576', '#0047FF', '#6691FF'];
 
   // Handle resize for mobile
   useEffect(() => {
