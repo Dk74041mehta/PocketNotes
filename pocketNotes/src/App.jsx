@@ -27,19 +27,22 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Persist data
+  // Groups aur notes ko localStorage me save karna
   useEffect(() => saveToStorage('notesAppGroups', groups), [groups]);
   useEffect(() => saveToStorage('notesAppAllNotes', groupNotes), [groupNotes]);
 
+  // Jab user kisi group pe click kare
   const handleGroupSelect = (group) => {
     setSelectedGroup(group);
-    if (isMobile) setShowMainContent(true); // Mobile: show main content
+    if (isMobile) setShowMainContent(true); 
   };
 
+  // Function For Creating New Group
   const handleCreateGroup = (e) => {
     e.preventDefault();
     const trimmedName = newGroupName.trim();
 
+      // Validation
     if (trimmedName.length < 2) {
       setInputError('Group name must be at least 2 characters long.');
       return;
@@ -58,13 +61,14 @@ const App = () => {
       createdAt: new Date().toISOString(),
     };
 
+    // Update state aur localStorage
     setGroups([...groups, newGroup]);
     setGroupNotes(prev => ({ ...prev, [newGroup.id]: [] }));
     setNewGroupName('');
     setShowPopup(false);
     setInputError('');
 
-    // Always go to initial page after creating a group
+    // Go to initial page after creating a group
     setSelectedGroup(null);
     if (isMobile) setShowMainContent(false);
   };

@@ -18,7 +18,8 @@ const Sidebar = ({ groups, selectedGroup, onGroupSelect, onCreateGroupClick }) =
               {/* Group ke initials */}
               {group.initials} 
             </div>
-            <div className="group-name">{group.name}</div> {/* Group ka naam */}
+            {/* Group ka naam */}
+            <div className="group-name">{group.name}</div> 
           </div>
         ))}
       </div>

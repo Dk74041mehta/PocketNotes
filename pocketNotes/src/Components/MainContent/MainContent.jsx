@@ -32,7 +32,7 @@ const MainContent = ({
     );
   };
 
-  // Agar koi group select nahi hua → initial Pocket Notes screen
+  // Agar koi group select nahi hua toh initial Pocket Notes screen
   if (!selectedGroup) {
     return (
       <div className="main-content">
@@ -127,9 +127,9 @@ const MainContent = ({
             newNoteText.trim().length > 0 ? "active" : ""
           }`}
           onClick={() => {
-            if (newNoteText.trim().length > 0) onAddNote(); // note add karne ka click handler
+            if (newNoteText.trim().length > 0) onAddNote();  //note add karne ka click handler
           }}
-        >
+        >  
           <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
         </svg>
       </div>

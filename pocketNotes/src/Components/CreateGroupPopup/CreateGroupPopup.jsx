@@ -2,7 +2,7 @@ import React from 'react';
 
 const CreateGroupPopup = ({
   show,
-  onClose,              // <- yaha add karo
+  onClose,             
   onSubmit,
   groupName,
   onGroupNameChange,
